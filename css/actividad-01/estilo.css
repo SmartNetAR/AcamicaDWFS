@@ -1,0 +1,19 @@
+body {
+  background-color: #F0FFF0;
+}
+
+h1 {
+  color: #ff9999;
+}
+
+h2 {
+  color: #98FB98;
+}
+
+h3 {
+  color: #2E8B57;
+}
+
+h1, h2, h3, p {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

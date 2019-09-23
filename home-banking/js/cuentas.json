@@ -1,0 +1,4 @@
+{"cuentas": [
+    { "id":  1, "nombre": "Cuenta Amiga 1", "numeroCuenta": 123456789 },
+    { "id":  2, "nombre": "Cuenta Amiga 1", "numeroCuenta": 4567891423 }
+]}

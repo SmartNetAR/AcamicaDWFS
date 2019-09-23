@@ -1,0 +1,6 @@
+{"servicios": [
+    { "id":  1, "nombre": "Agua", "precio": 350 },
+    { "id":  2, "nombre": "Teléfono", "precio": 425 },
+    { "id":  3, "nombre": "Luz", "precio": 210 },
+    { "id":  4, "nombre": "Internet", "precio": 570 }
+]}

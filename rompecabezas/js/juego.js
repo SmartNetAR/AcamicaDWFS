@@ -99,7 +99,7 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
   //COMPLETAR
-  if (fila >= 0 && fila < 3 && columna >= 0 && columna < 3 ) {
+  if (fila >= 0 && fila < grilla.length && columna >= 0 && columna < grilla[fila].length ) {
     return true;
   }
 }
@@ -287,7 +287,7 @@ y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
-    mezclarPiezas(30);
+    mezclarPiezas(60);
     capturarTeclas();
 }
 

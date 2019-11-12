@@ -1,9 +1,21 @@
-var $paleta, grillaPixeles;
+var $grillaPixeles;
+var $paleta;
+var $indicadorColor;
+
 $(document).ready( function () {
   $paleta = $('#paleta');
-  grillaPixeles = $('#grilla-pixeles');
+  $grillaPixeles = $('#grilla-pixeles');
+  $indicadorColor = $('#indicador-de-color');
 
   generarPaleta(nombreColores);
+  generarGrilla();
+
+  $paleta.click( function (e) {
+    let color = ($(e.target).css("background-color"));
+    if (color != 'rgba(0, 0, 0, 0)') {
+      $indicadorColor.css("background-color", color);
+    }
+  });
 })
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',
@@ -42,10 +54,19 @@ colorPersonalizado.addEventListener('change',
 );
 
 function generarPaleta(listaColores) {
+  let $contenido = '';
   listaColores.forEach(color => {
-      $contenido = $paleta.html();
-      $contenido = $contenido + '<div style="background-color:'+ color + '"></div>';
-      $paleta.html($contenido);
-  });
-  
+      let $nuevoDivColor = '<div style="background-color:'+ color + '"></div>';
+      $contenido = $contenido + $nuevoDivColor;
+    });
+    $paleta.html($contenido);  
+}
+
+function generarGrilla() {
+  let $contenido = '';
+  for (let index = 0; index < 1750; index++) {
+    let $nuevoDivPixel = '<div></div>';
+    $contenido = $contenido + $nuevoDivPixel;
+  }
+  $grillaPixeles.html($contenido);
 }

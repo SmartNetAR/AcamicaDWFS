@@ -1,3 +1,10 @@
+var $paleta, grillaPixeles;
+$(document).ready( function () {
+  $paleta = $('#paleta');
+  grillaPixeles = $('#grilla-pixeles');
+
+  generarPaleta(nombreColores);
+})
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',
   'Khaki', 'Yellow', 'Gold', 'Orange', 'DarkOrange', 'OrangeRed', 'Tomato', 'Coral', 'DarkSalmon', 'LightSalmon', 'LightCoral', 'Salmon', 'PaleVioletRed',
@@ -33,3 +40,12 @@ colorPersonalizado.addEventListener('change',
 
   })
 );
+
+function generarPaleta(listaColores) {
+  listaColores.forEach(color => {
+      $contenido = $paleta.html();
+      $contenido = $contenido + '<div style="background-color:'+ color + '"></div>';
+      $paleta.html($contenido);
+  });
+  
+}

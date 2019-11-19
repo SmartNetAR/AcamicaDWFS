@@ -14,11 +14,13 @@ $(document).ready( function () {
 
   $paleta.click( function (e) {
     let color = ($(e.target).css("background-color"));
-    if (color != 'rgba(0, 0, 0, 0)') {
-      $indicadorColor.css("background-color", color);
-      colorSeleccionado = $indicadorColor.css("background-color");
-    }
+    cambiarColor(color);
   });
+
+  $('#borrar').click(function () {
+    borrarTodo();
+  })
+
 
   // le adjunto el método mouseover a la grilla cuando bajo el botón del mouse
   $($grillaPixeles).mousedown(function(e) {
@@ -30,7 +32,7 @@ $(document).ready( function () {
 
         $divActual = e.target;
         $($divActual).css("background-color", colorSeleccionado);
-        
+
     });
   }) // le quito el método mouseover a la grilla cuando suelto el botón del mouse
   .mouseup(function() {
@@ -38,13 +40,6 @@ $(document).ready( function () {
     $($grillaPixeles).unbind('mouseover');
 
   });
-  
-  // $grillaPixeles.mouseover( function (e) {      
-  //   if (colorSeleccionado != 'rgba(0, 0, 0, 0)') {
-  //     $divActual = e.target;
-  //     $($divActual).css("background-color", colorSeleccionado);
-  //   }
-  // })
 
 
 
@@ -76,14 +71,20 @@ var nombreColores = ['White', 'LightYellow',
 var colorPersonalizado = document.getElementById('color-personalizado');
 
 colorPersonalizado.addEventListener('change', 
-  (function() {
+  function() {
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
-
-
-  })
+    cambiarColor(colorActual);
+  }
 );
+
+function cambiarColor(nuevoColor) {
+  if (nuevoColor != 'rgba(0, 0, 0, 0)') {
+    $indicadorColor.css("background-color", nuevoColor);
+    colorSeleccionado = nuevoColor;
+  }
+}
 
 function generarPaleta(listaColores) {
   let $contenido = '';
@@ -109,6 +110,11 @@ function generarGrilla() {
         $(this).css({background:"#333333"});
     });
   })
+}
 
-
+function borrarTodo() {
+  var $todosLosDivs = $($grillaPixeles).children();
+  $todosLosDivs.animate({
+    backgroundColor: 'white'
+  }, 600)
 }

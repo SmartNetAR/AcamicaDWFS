@@ -2,6 +2,8 @@ var $grillaPixeles;
 var $paleta;
 var $indicadorColor;
 
+var colorSeleccionado;
+
 $(document).ready( function () {
   $paleta = $('#paleta');
   $grillaPixeles = $('#grilla-pixeles');
@@ -14,8 +16,38 @@ $(document).ready( function () {
     let color = ($(e.target).css("background-color"));
     if (color != 'rgba(0, 0, 0, 0)') {
       $indicadorColor.css("background-color", color);
+      colorSeleccionado = $indicadorColor.css("background-color");
     }
   });
+
+  // le adjunto el método mouseover a la grilla cuando bajo el botón del mouse
+  $($grillaPixeles).mousedown(function(e) {
+
+    $divActual = e.target;
+    $($divActual).css("background-color", colorSeleccionado);
+    
+    $($grillaPixeles).bind('mouseover',function(e){
+
+        $divActual = e.target;
+        $($divActual).css("background-color", colorSeleccionado);
+        
+    });
+  }) // le quito el método mouseover a la grilla cuando suelto el botón del mouse
+  .mouseup(function() {
+
+    $($grillaPixeles).unbind('mouseover');
+
+  });
+  
+  // $grillaPixeles.mouseover( function (e) {      
+  //   if (colorSeleccionado != 'rgba(0, 0, 0, 0)') {
+  //     $divActual = e.target;
+  //     $($divActual).css("background-color", colorSeleccionado);
+  //   }
+  // })
+
+
+
 })
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',
@@ -62,6 +94,8 @@ function generarPaleta(listaColores) {
     $paleta.html($contenido);  
 }
 
+
+
 function generarGrilla() {
   let $contenido = '';
   for (let index = 0; index < 1750; index++) {
@@ -69,4 +103,12 @@ function generarGrilla() {
     $contenido = $contenido + $nuevoDivPixel;
   }
   $grillaPixeles.html($contenido);
+
+  $(document).mousedown(function() {
+    $($grillaPixeles).bind('mouseover',function(){
+        $(this).css({background:"#333333"});
+    });
+  })
+
+
 }

@@ -46,6 +46,8 @@ $(document).ready( function () {
     cargarImagen(idNombre);
   })
 
+  $('#guardar').click(guardarPixelArt);
+
 })
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',

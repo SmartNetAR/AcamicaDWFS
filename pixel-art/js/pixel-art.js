@@ -41,7 +41,10 @@ $(document).ready( function () {
 
   });
 
-
+  $('.imgs').click(function (e) {
+    idNombre = e.target.id;
+    cargarImagen(idNombre);
+  })
 
 })
 var nombreColores = ['White', 'LightYellow',
@@ -117,4 +120,23 @@ function borrarTodo() {
   $todosLosDivs.animate({
     backgroundColor: 'white'
   }, 600)
+}
+
+function cargarImagen(nombre) {
+  switch (nombre) {
+    case "batman":
+      cargarSuperheroe(batman);
+      break;
+    case "flash":
+      cargarSuperheroe(flash);
+      break;
+    case "wonder":
+      cargarSuperheroe(wonder);
+      break;
+    case "invisible":
+      cargarSuperheroe(invisible);
+      break;
+    default:
+      break;
+  }
 }

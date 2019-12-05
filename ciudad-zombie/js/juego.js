@@ -20,7 +20,14 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
+    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 400, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 200, 400, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 300, 450, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 300, 480, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 300, 100, 15, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 450, 450, 30, 15, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 600, 450, 30, 30, 1),
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -44,6 +51,14 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
+    new ZombieCaminante('imagenes/zombie1.png', 200,200, 10, 10, 1, 6),
+    new ZombieCaminante('imagenes/zombie1.png', 300,200, 10, 10, 1, 6),
+    new ZombieCaminante('imagenes/zombie1.png', 200,800, 10, 10, 1, 6),
+    new ZombieCaminante('imagenes/zombie1.png', 900,100, 10, 10, 1, 6),
+    new ZombieCaminante('imagenes/zombie1.png', 900,300, 10, 10, 1, 6),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 1, 1, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 1, 1, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 1, 1, 'v'),
 
   ]
 
@@ -158,6 +173,7 @@ Juego.dibujar = function() {
   // Se recorren los enemigos pintandolos
   this.enemigos.forEach(function(enemigo) {
     /* Completar */
+    Dibujante.dibujarEntidad(enemigo)
   });
 
   // El dibujante dibuja las vidas del jugador
@@ -176,6 +192,9 @@ un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
   /* COMPLETAR */
+  this.enemigos.forEach(function (enemigo) {
+    enemigo.mover()
+  })
 };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
@@ -187,9 +206,11 @@ Juego.calcularAtaques = function() {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
       /* Si el enemigo colisiona debe empezar su ataque
       COMPLETAR */
+      enemigo.comenzarAtaque(this.jugador)
     } else {
       /* Sino, debe dejar de atacar
       COMPLETAR */
+      enemigo.dejarDeAtacar(this.jugador)
     }
   }, this);
 };
@@ -204,6 +225,7 @@ Juego.chequearColisiones = function(x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
 
       /*COMPLETAR, obstaculo debe chocar al jugador*/
+      obstaculo.chocar(this.jugador)
 
       puedeMoverse = false
     }

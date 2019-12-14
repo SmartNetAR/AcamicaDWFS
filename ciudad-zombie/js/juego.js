@@ -51,14 +51,14 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new ZombieCaminante('imagenes/zombie1.png', 200,200, 10, 10, 1, 6),
-    new ZombieCaminante('imagenes/zombie1.png', 300,200, 10, 10, 1, 6),
-    new ZombieCaminante('imagenes/zombie1.png', 200,800, 10, 10, 1, 6),
-    new ZombieCaminante('imagenes/zombie1.png', 900,100, 10, 10, 1, 6),
-    new ZombieCaminante('imagenes/zombie1.png', 900,300, 10, 10, 1, 6),
-    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 1, 1, 'h'),
-    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 1, 1, 'v'),
-    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 1, 1, 'v'),
+    new ZombieCaminante('imagenes/zombie1.png', 200,200, 10, 10, 1, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 300,200, 10, 10, 1, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 200,800, 10, 10, 1, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 900,100, 10, 10, 1, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 900,300, 10, 10, 1, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 557}),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 3, {desdeX: 20, hastaX: 850, desdeY: 20, hastaY: 557}, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 1, {desdeX: 20, hastaX: 930, desdeY: -100, hastaY: 600}, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 2, {desdeX: 20, hastaX: 930, desdeY: -100, hastaY: 600}, 'v'),
 
   ]
 

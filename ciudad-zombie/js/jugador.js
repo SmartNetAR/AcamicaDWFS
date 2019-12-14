@@ -8,7 +8,7 @@ var Jugador = {
   y: 160,
   ancho: 15,
   alto: 30,
-  posicion: 'abajo',
+  rotacion: 'abajo',
   velocidad: 10,
   vidas: 5,
   // Hay que agregar lo que falte al jugador: movimientos, perdida de vidas,
@@ -21,22 +21,22 @@ var Jugador = {
   },
   girar: function (velocidadX, velocidadY) {
     if (velocidadX > 0){
-      this.posicion = "derecha";
+      this.rotacion = "derecha";
     }else if (velocidadX < 0) {
-      this.posicion = "izquierda";
+      this.rotacion = "izquierda";
     }else if (velocidadY > 0) {
-      this.posicion = "abajo";
+      this.rotacion = "abajo";
     }else if (velocidadY < 0) {
-      this.posicion = "arriba";
+      this.rotacion = "arriba";
     }else {
       return
     }
     this.actualizarSprite();
   },
   actualizarSprite: function () {
-    if (this.sprite != 'imagenes/auto_rojo_' + this.posicion + '.png') {
-      this.sprite = 'imagenes/auto_rojo_' + this.posicion + '.png';
-      if (this.posicion == "arriba" || this.posicion == "abajo") {
+    if (this.sprite != 'imagenes/auto_rojo_' + this.rotacion + '.png') {
+      this.sprite = 'imagenes/auto_rojo_' + this.rotacion + '.png';
+      if (this.rotacion == "arriba" || this.rotacion == "abajo") {
         this.ancho = 15;
         this.alto= 30;
       }else{

@@ -110,3 +110,35 @@ describe('Test listado obtener restaurantes', () => {
         expect(restos3[0].nombre).to.be.equal("TAO Uptown")
     })
 })
+
+
+//TDD
+function Reserva( fecha, cantidadPersonas, precioPorPersona, codigoDescuento ) {
+    this.fecha = fecha,
+    this.cantidadPersonas = cantidadPersonas,
+    this.precioPorPersona = precioPorPersona,
+    this.codigoDescuento = codigoDescuento
+}
+Reserva.prototype.precioBase = function () {
+    return this.cantidadPersonas * this.precioPorPersona
+}
+
+describe('Creación de Reservas', () => {
+
+
+    const cantidadPersonas = 3
+    const precioPorPersona = 500
+    const reserva = new Reserva("10/01/2020", cantidadPersonas, precioPorPersona, "ABC123")
+
+    it(`el precio base de una reserva con ${cantidadPersonas} personas a ${precioPorPersona} es $${cantidadPersonas * precioPorPersona}`, () => {
+        expect(reserva.precioBase()).to.be.equal(precioPorPersona * cantidadPersonas)
+    })
+    
+    const codigoDescuento = { codigo: 'DES15', porcentaje: 15 }
+    const reservaConDescuento = new Reserva("10/01/2020", cantidadPersonas, precioPorPersona, codigoDescuento.codigo)
+
+    it(`el precio con descuento de ${codigoDescuento.porcentaje}% con el código ${codigoDescuento.porcentaje}`, () => {
+        expect(reservaConDescuento.precioBase()).to.be.equal( (precioPorPersona * cantidadPersonas) * )
+    })
+
+})

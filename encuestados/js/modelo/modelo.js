@@ -43,4 +43,27 @@ Modelo.prototype = {
   //se guardan las preguntas
   guardar: function(){
   },
+
+  agregarRespuesta: function ( respuesta ) {
+    
+  },
+
+  votarRespuesta: function ( idPregunta, textoRespuesta ) {
+    let preguntaVotada = {}
+    this.preguntas.forEach( pregunta => {
+      if ( pregunta.id == idPregunta ) {
+        pregunta.cantidadPorRespuesta.forEach( respuesta => {
+          if ( respuesta.textoRespuesta == textoRespuesta)
+            return respuesta.cantidad++;
+        })
+        return preguntaVotada = pregunta; 
+      }
+    })
+    return preguntaVotada;
+  },
+
+  borrarTodasLasPreguntas: function () {
+    this.preguntas = [];
+    this.ultimoId = 0;
+  }
 };

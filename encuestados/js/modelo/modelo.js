@@ -3,6 +3,7 @@
  */
 var Modelo = function() {
   this.preguntas = [];
+  this.preguntas = obtenerPreguntasGuardadas();
   this.ultimoId = 0;
 
   //inicializacion de eventos
@@ -57,6 +58,8 @@ Modelo.prototype = {
 
   //se guardan las preguntas
   guardar: function(){
+    localStorage.clear();
+    localStorage.setItem("preguntas", JSON.stringify(this.preguntas));
   },
 
   agregarRespuesta: function ( idPregunta, respuesta ) {
@@ -67,6 +70,7 @@ Modelo.prototype = {
         return preguntaConRespuestaAgregada = preguta;
       }
     })
+    this.guardar();
     this.preguntaAgregada.notificar();
     return preguntaConRespuestaAgregada;
   },
@@ -82,6 +86,7 @@ Modelo.prototype = {
         return preguntaVotada = pregunta; 
       }
     })
+    this.guardar();
     return preguntaVotada;
   },
 
@@ -89,5 +94,12 @@ Modelo.prototype = {
     this.preguntas = [];
     this.ultimoId = 0;
     this.preguntaEliminada.notificar();
-  }
+    this.guardar();
+  },
+    
 };
+
+  function obtenerPreguntasGuardadas () {
+    const preguntasAlmacenadas = localStorage.getItem("preguntas");
+    return JSON.parse( preguntasAlmacenadas );
+  }

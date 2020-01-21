@@ -1,16 +1,16 @@
 var modelo = new Modelo();
-modelo.preguntas = [
-  {
-    "textoPregunta": "Mi primer Pregunta",
-    "id": 0,
-    "cantidadPorRespuesta": [
-      {
-        "textoRespuesta": "mi unica respuesta",
-        "cantidad": 2
-      }
-    ]
-  }
-]
+// modelo.preguntas = [
+//   {
+//     "textoPregunta": "Mi primer Pregunta",
+//     "id": 0,
+//     "cantidadPorRespuesta": [
+//       {
+//         "textoRespuesta": "mi unica respuesta",
+//         "cantidad": 2
+//       }
+//     ]
+//   }
+// ]
 var vistaAdmin = new VistaAdministrador(modelo, new Controlador(modelo), {
   'lista': $('#lista'),
   'botonEditarPregunta': $('#editarPregunta'),

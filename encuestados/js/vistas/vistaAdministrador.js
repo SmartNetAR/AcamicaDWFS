@@ -21,18 +21,6 @@ VistaAdministrador.prototype = {
   //lista
   inicializar: function() {
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
-    this.modelo.preguntas = [
-      {
-        "textoPregunta": "Mi primer Pregunta",
-        "id": 0,
-        "cantidadPorRespuesta": [
-          {
-            "textoRespuesta": "mi unica respuesta",
-            "cantidad": 2
-          }
-        ]
-      }
-    ]
     this.reconstruirLista();
     this.configuracionDeBotones();
     validacionDeFormulario();

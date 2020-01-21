@@ -24,12 +24,27 @@ Modelo.prototype = {
   agregarPregunta: function(nombre, respuestas) {
     var id = this.obtenerUltimoId();
     id++;
-    var nuevaPregunta = {
+    let nuevaPregunta = {
       'textoPregunta': nombre,
       'id': id,
       'cantidadPorRespuesta': respuestas
     };
     this.preguntas.push(nuevaPregunta);
+    this.guardar();
+    this.preguntaAgregada.notificar();
+  },
+
+  editarPregunta: function (id, nombre, respuestas) {
+    let nuevaPregunta = {
+      'textoPregunta': nombre,
+      'id': id,
+      'cantidadPorRespuesta': respuestas
+    };
+    for ( let i = 0; i < this.preguntas.length; i++ ) {
+      if ( this.preguntas[i].id == id ) {
+        this.preguntas[i] = nuevaPregunta;
+      }
+    }
     this.guardar();
     this.preguntaAgregada.notificar();
   },

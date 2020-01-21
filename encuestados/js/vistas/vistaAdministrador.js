@@ -18,6 +18,20 @@ VistaAdministrador.prototype = {
   //lista
   inicializar: function() {
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
+    this.modelo.preguntas = [
+      {
+        "textoPregunta": "Mi primer Pregunta",
+        "id": 0,
+        "cantidadPorRespuesta": [
+          {
+            "textoRespuesta": "mi unica respuesta",
+            "cantidad": 2
+          }
+        ]
+      }
+    ]
+    this.reconstruirLista();
+    this.configuracionDeBotones();
     validacionDeFormulario();
   },
 
@@ -26,6 +40,10 @@ VistaAdministrador.prototype = {
     var nuevoItem;
     //completar
     //asignar a nuevoitem un elemento li con clase "list-group-item", id "pregunta.id" y texto "pregunta.textoPregunta"
+    nuevoItem = $('<li/>')
+      .addClass('list-group-item')
+      .attr('id', pregunta.id)
+      .text(pregunta.textoPregunta)
     var interiorItem = $('.d-flex');
     var titulo = interiorItem.find('h5');
     titulo.text(pregunta.textoPregunta);
@@ -54,8 +72,14 @@ VistaAdministrador.prototype = {
       var value = e.pregunta.val();
       var respuestas = [];
 
-      $('[name="option[]"]').each(function() {
+      $('[name="option[]"]').each(function( index ) {
         //completar
+        // obtener con jquery $(this).val() el texto del input de las respuestas
+        let respuesta = {
+          textoRespuesta: $(this).val(),
+          cantidad: 0
+        }
+        if (respuesta) respuestas.push( respuesta );
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);

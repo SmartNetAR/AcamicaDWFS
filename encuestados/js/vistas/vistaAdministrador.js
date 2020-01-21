@@ -11,6 +11,9 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function() {
     contexto.reconstruirLista();
   });
+  this.modelo.preguntaEliminada.suscribir(function () {
+    contexto.reconstruirLista();
+  })
 };
 
 
@@ -72,7 +75,7 @@ VistaAdministrador.prototype = {
       var value = e.pregunta.val();
       var respuestas = [];
 
-      $('[name="option[]"]').each(function( index ) {
+      $('[name="option[]"]').each(function() {
         //completar
         // obtener con jquery $(this).val() el texto del input de las respuestas
         let respuesta = {
@@ -85,6 +88,10 @@ VistaAdministrador.prototype = {
       contexto.controlador.agregarPregunta(value, respuestas);
     });
     //asociar el resto de los botones a eventos
+    e.botonBorrarPregunta.click(function() {
+      const id = parseInt($('.list-group-item.active').attr('id'));
+      contexto.controlador.borrarPregunta( id );
+    });
   },
 
   limpiarFormulario: function(){

@@ -44,12 +44,20 @@ Modelo.prototype = {
   guardar: function(){
   },
 
-  agregarRespuesta: function ( respuesta ) {
-    
+  agregarRespuesta: function ( idPregunta, respuesta ) {
+    let preguntaConRespuestaAgregada = {};
+    this.preguntas.forEach( preguta => {
+      if ( preguta.id == idPregunta ) {
+        preguta.cantidadPorRespuesta.push( respuesta );
+        return preguntaConRespuestaAgregada = preguta;
+      }
+    })
+    this.preguntaAgregada.notificar();
+    return preguntaConRespuestaAgregada;
   },
 
   votarRespuesta: function ( idPregunta, textoRespuesta ) {
-    let preguntaVotada = {}
+    let preguntaVotada = {};
     this.preguntas.forEach( pregunta => {
       if ( pregunta.id == idPregunta ) {
         pregunta.cantidadPorRespuesta.forEach( respuesta => {
@@ -65,5 +73,6 @@ Modelo.prototype = {
   borrarTodasLasPreguntas: function () {
     this.preguntas = [];
     this.ultimoId = 0;
+    this.preguntaEliminada.notificar();
   }
 };

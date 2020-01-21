@@ -82,7 +82,7 @@ VistaAdministrador.prototype = {
           textoRespuesta: $(this).val(),
           cantidad: 0
         }
-        if (respuesta) respuestas.push( respuesta );
+        if (respuesta.textoRespuesta != "") respuestas.push( respuesta );
       })
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);

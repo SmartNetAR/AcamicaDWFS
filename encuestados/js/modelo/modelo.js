@@ -2,13 +2,13 @@
  * Modelo
  */
 var Modelo = function() {
-  this.preguntas = [];
   this.preguntas = obtenerPreguntasGuardadas();
   this.ultimoId = 0;
 
   //inicializacion de eventos
   this.preguntaAgregada = new Evento(this);
   this.preguntaEliminada = new Evento(this);
+  this.preguntaVotadaEvent = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -75,31 +75,32 @@ Modelo.prototype = {
     return preguntaConRespuestaAgregada;
   },
 
-  votarRespuesta: function ( idPregunta, textoRespuesta ) {
-    let preguntaVotada = {};
+  agregarVoto: function ( nombrePregunta, textoRespuesta ) {
     this.preguntas.forEach( pregunta => {
-      if ( pregunta.id == idPregunta ) {
+      if ( pregunta.textoPregunta == nombrePregunta ) {
         pregunta.cantidadPorRespuesta.forEach( respuesta => {
-          if ( respuesta.textoRespuesta == textoRespuesta)
-            return respuesta.cantidad++;
+          if ( respuesta.textoRespuesta == textoRespuesta) respuesta.cantidad++
+          return respuesta;
         })
-        return preguntaVotada = pregunta; 
       }
     })
     this.guardar();
-    return preguntaVotada;
+    this.preguntaVotadaEvent.notificar();
   },
 
   borrarTodasLasPreguntas: function () {
     this.preguntas = [];
     this.ultimoId = 0;
-    this.preguntaEliminada.notificar();
     this.guardar();
+    this.preguntaEliminada.notificar();
   },
     
 };
 
   function obtenerPreguntasGuardadas () {
     const preguntasAlmacenadas = localStorage.getItem("preguntas");
-    return JSON.parse( preguntasAlmacenadas );
+    if (preguntasAlmacenadas)     
+      return JSON.parse( preguntasAlmacenadas );
+    else
+      return []
   }

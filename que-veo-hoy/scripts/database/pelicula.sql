@@ -8,7 +8,9 @@ CREATE TABLE que_veo_hoy.pelicula (
 	puntuacion INT(2) NULL,
 	poster varchar(300) NULL,
 	trama varchar(700) NULL,
-	CONSTRAINT pelicula_PK PRIMARY KEY (id)
+	genero_id BIGINT UNSIGNED,
+	CONSTRAINT pelicula_PK PRIMARY KEY (id),
+	CONSTRAINT pelicula_genero_FK FOREIGN KEY (genero_id) REFERENCES que_veo_hoy.genero(id)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4

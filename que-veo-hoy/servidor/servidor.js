@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const peliculas = require('./controladores/peliculas.js')
+const generos = require('./controladores/generos.js')
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(bodyParser.json());
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
 const puerto = '8080';
 
-app.get("/peliculas", peliculas.mostrarPeliculas)
+app.get("/peliculas", peliculas.mostrarPeliculas);
+app.get("/generos", generos.mostrarGeneros);
 
 
 app.listen(puerto, function () {

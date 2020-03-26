@@ -72,3 +72,40 @@ exports.mostrarPeliculas = (req, res) => {
     });
 
 }
+
+exports.mostrarPeliculaPorId = (req, res) => {
+    const sql = `SELECT pelicula.*, genero.nombre AS genero, actor.nombre AS actor FROM pelicula
+        JOIN genero ON pelicula.genero_id = genero.id
+        JOIN actor_pelicula ON pelicula.id = actor_pelicula.pelicula_id
+        JOIN actor ON actor.id = actor_pelicula.actor_id
+            WHERE pelicula.id = ?`
+    
+    const id = req.params.id ;
+
+    mysql.query(`${sql}`, id, ( err, results ) => {
+
+        if ( err ) {
+            res.status(500).json({
+                ok: false,
+                message : "Internal Error",
+                error: err
+            })
+            throw err;
+        }
+        
+        const actores = results.map( pelicula => ({
+            nombre: pelicula.actor
+        }));
+
+        const pelicula = results[0];
+        pelicula.nombre = pelicula.genero;
+
+        res.json({
+            ok: true,
+            pelicula,
+            actores
+        });
+        
+
+    });
+}

@@ -78,7 +78,7 @@ function ControladorPeliculas() {
                     //se ejecuta la funcion cargarListado() pasandole como parametro las peliculas que se obtuvieron
                     self.cargarListado(data.peliculas);
                     //se ejecuta la fucion cargarBotones() pasandole el total de peliculas que se obtienen como resultado
-                    self.cargarBotones(data.total);
+                    self.cargarBotones(data.total, pagina_solicitada -1);
                 });
         },
 
@@ -117,7 +117,7 @@ function ControladorPeliculas() {
 
         //esta función recibe como parámetro el total de películas que se obtienen como resultado. Según esa cantidad 
         //crea los botones de la paginación y les da la funcionalidad correspondiente
-        this.cargarBotones = function(total) {
+        this.cargarBotones = function(total, pagina_activa) {
             //se establece que se van a mostrar 52 resultados por pagina
             var cantidad_por_pagina = 52;
             var self = this;
@@ -137,6 +137,8 @@ function ControladorPeliculas() {
                 boton.appendTo($(".btn-group"));
                 //este botón no va a ser mas de la clase ejemplo-boton
                 boton.removeClass("ejemplo-boton");
+                // agregogamos la clase active a la página solicitada
+                if ( i == pagina_activa) boton.addClass("active");
                 //se muestra el botón creado
                 boton.show();
             }

@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 const puerto = '8080';
 
 app.get("/peliculas", peliculas.mostrarPeliculas);
+app.get("/peliculas/recomendacion", peliculas.recomendar);
 app.get("/peliculas/:id", peliculas.mostrarPeliculaPorId);
 app.get("/generos", generos.mostrarGeneros);
 

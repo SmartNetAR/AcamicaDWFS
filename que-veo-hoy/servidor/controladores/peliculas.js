@@ -32,13 +32,7 @@ exports.mostrarPeliculas = (req, res) => {
 
     const limit = cantidad ? `LIMIT ${cantidad}` : '';
 
-    let pagination = '';
-    if ( pagina ) {
-        if ( pagina > 1 ) {
-
-            pagination = `OFFSET ${(pagina-1) * cantidad}`
-        }
-    }
+    const pagination = ( pagina && pagina > 1 && cantidad ) ? `OFFSET ${(pagina-1) * cantidad}` :'';
 
     mysql.query(`${sql} ${where} ${order} ${limit} ${pagination}`, sqlParams, ( err, results ) => {
 

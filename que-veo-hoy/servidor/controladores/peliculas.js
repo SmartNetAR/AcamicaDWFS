@@ -28,12 +28,17 @@ exports.mostrarPeliculas = (req, res) => {
         sqlParams.push(`%${titulo}%`);
     }
 
-    const order = columna_orden ? `ORDER BY ${columna_orden} ${tipo_orden}` : '';
+    let order = '';
+    if ( columna_orden ) {
+        const tipo = ( tipo_orden === 'DESC' ) ? 'DESC' : 'ASC'
+        order = `ORDER BY ${columna_orden} ${tipo}`;
+    }
 
     const limit = cantidad ? `LIMIT ${cantidad}` : '';
 
     const pagination = ( pagina && pagina > 1 && cantidad ) ? `OFFSET ${(pagina-1) * cantidad}` :'';
 
+    console.log(`${sql} ${where} ${order} ${limit} ${pagination}`);
     mysql.query(`${sql} ${where} ${order} ${limit} ${pagination}`, sqlParams, ( err, results ) => {
 
         if ( err ) {

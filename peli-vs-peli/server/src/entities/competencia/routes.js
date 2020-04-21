@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("./controller.js");
+const { getAll, getMovies, votar } = require("./controller.js");
 const middlewares = require("./middlewares");
 
-router.get("/", controller.getAll);
-router.get("/:id/peliculas", controller.getMovies)
-router.post("/:id/voto", middlewares.votar, controller.votar);
+router.get("/", getAll);
+router.get("/:id/peliculas", getMovies)
+router.post("/:id([0-9]+)/voto", middlewares.votar, votar);
 
 module.exports = router;

@@ -48,7 +48,10 @@ exports.votar = ( req, res ) => {
         if ( error ) {
             return res.status( 500 ).json( error );
         }
-
-        res.json("se ha realizado la votación");
+        if ( row.affectedRows ) {
+            res.json("se ha realizado la votación");
+        } else {
+            res.status(422).json("no se ha realizado ningún cambio");
+        }
     });
 }

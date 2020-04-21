@@ -41,5 +41,14 @@ exports.getMovies = ( req, res ) => {
 }
 
 exports.votar = ( req, res ) => {
-    res.json(req.body);
+    const { idPelicula } = req.body;
+    const idCompetencia = req.params.id;
+
+    db.executeQuery( query.setGanadora, [ idPelicula, idCompetencia ], ( error, row ) => {
+        if ( error ) {
+            return res.status( 500 ).json( error );
+        }
+
+        res.json("se ha realizado la votación");
+    });
 }
